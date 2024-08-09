@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Data Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        canvas { width: 100%; max-width: 800px; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1>Sales Data Analysis</h1>
+    <canvas id="salesChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function fetchSalesData() {
+            // Simulate sales data
+            return [
+                { date: '2024-08-01', sales: 1500 },
+                { date: '2024-08-02', sales: 2000 },
+                { date: '2024-08-03', sales: 1700 },
+                { date: '2024-08-04', sales: 2200 },
+                { date: '2024-08-05', sales: 1800 }
+            ];
+        }
+
+        function renderChart(data) {
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.date),
+                    datasets: [{
+                        label: 'Sales',
+                        data: data.map(d => d.sales),
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        const data = fetchSalesData();
+        renderChart(data);
+    </script>
+</body>
+</html>
+
+
+
+
